@@ -83,6 +83,7 @@ build/Release
 
 # Dependency directories
 node_modules/
+./node_modules/
 jspm_packages/
 
 # Typescript v1 declaration files
@@ -155,6 +156,3 @@ tags
 /routes/
 /routes
 # End of https://www.gitignore.io/api/node,vim,git,macos,linux,sublimetext
-
-
-.env
