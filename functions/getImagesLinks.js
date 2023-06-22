@@ -26,6 +26,9 @@ const getImagesLinks = async (userID) => {
         // load user page
         await driver.get(home_page + userID + "/");
 
+        //wait for html load completely
+        await driver.wait(until.elementLocated(By.id("__PWS_ROOT__")))
+
         // get images
         let imgResults = await driver.findElements(By.xpath("//img"))
         let imgSrcs = []
