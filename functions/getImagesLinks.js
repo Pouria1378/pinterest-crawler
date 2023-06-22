@@ -8,20 +8,20 @@ const getImagesLinks = async (userID) => {
 
     try {
         // Navigate to Url
-        await driver.get(home_page);
+        // await driver.get(home_page);
 
         // open login modal
-        let login_btn = await driver.wait(until.elementLocated(By.tagName("button")))
-        await login_btn.click();
+        // let login_btn = await driver.wait(until.elementLocated(By.tagName("button")))
+        // await login_btn.click();
 
 
         // enter email
-        let username_input = await driver.wait(until.elementLocated(By.id("email")))
-        await username_input.sendKeys(process.env.USERNAMEPINTEREST);
+        // let username_input = await driver.wait(until.elementLocated(By.id("email")))
+        // await username_input.sendKeys(process.env.USERNAMEPINTEREST);
 
         // enter password
-        let password_input = await driver.wait(until.elementLocated(By.id("password")))
-        await password_input.sendKeys(process.env.PASSWORDPINTEREST, Key.ENTER);
+        // let password_input = await driver.wait(until.elementLocated(By.id("password")))
+        // await password_input.sendKeys(process.env.PASSWORDPINTEREST, Key.ENTER);
 
         // load user page
         await driver.get(home_page + userID + "/");
@@ -31,12 +31,17 @@ const getImagesLinks = async (userID) => {
         let imgSrcs = []
 
         for (i of imgResults) {
-            let src = await i.getAttribute("src").then(res => res)
+            let src = await i.getAttribute("src")
+                .then(res => res)
+                .catch(err => {
+                    console.log("err", err);
+                    return ""
+                })
             imgSrcs.push(src)
             console.log("res src :", src)
         }
 
-        return imgSrcs
+        return imgSrcs.filter(img => img !== "")
 
     }
     catch (error) {
