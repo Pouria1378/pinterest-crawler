@@ -8,20 +8,23 @@ const getImagesLinks = async (userID) => {
 
     try {
         // Navigate to Url
-        // await driver.get(home_page);
+        await driver.get(home_page);
 
         // open login modal
-        // let login_btn = await driver.wait(until.elementLocated(By.tagName("button")))
-        // await login_btn.click();
+        let login_btn = await driver.wait(until.elementLocated(By.tagName("button")))
+        await login_btn.click();
 
 
         // enter email
-        // let username_input = await driver.wait(until.elementLocated(By.id("email")))
-        // await username_input.sendKeys(process.env.USERNAMEPINTEREST);
+        let username_input = await driver.wait(until.elementLocated(By.id("email")))
+        await username_input.sendKeys(process.env.USERNAMEPINTEREST);
 
-        // enter password
-        // let password_input = await driver.wait(until.elementLocated(By.id("password")))
-        // await password_input.sendKeys(process.env.PASSWORDPINTEREST, Key.ENTER);
+        // enter password 
+        let password_input = await driver.wait(until.elementLocated(By.id("password")))
+        await password_input.sendKeys(process.env.PASSWORDPINTEREST, Key.ENTER);
+
+        // to login completely
+        // let password_input2 = await driver.wait(until.elementLocated(By.id("searchBoxContainer")))
 
         // load user page
         await driver.get(home_page + userID + "/");
